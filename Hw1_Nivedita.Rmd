@@ -1,0 +1,149 @@
+---
+title: "Hw1"
+author: "Nivedita Attada"
+date: "2024-06-11"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+
+
+## Part 1
+1. What is an R object?
+An R object holds data that can be a variable or information about variables.
+
+2. How many ways can data be assigned to an R object?
+"<-", "=", "assign()"
+
+3. Why do you think it is important to ensure that data objects are of the correct type?
+If objects are not the correct type, we may not be able to perform certain functions or get object mismatch errors when we do try to perform operations.
+
+4. What is the relationship between vectors, matrices, and data frames?
+Vectors are simple data types and contain one type of data, matrices are 2-dimensional and contain one data type, data frames can contain different data types in the same object.
+
+5. Why might a data frame be more suitable than a matrix for holding heterogeneous biological data?
+Biological data may contain different data types of data for example cell types and cell count would be two different data types and data frames are the only ones that can hold both types of variables
+
+## Part 2
+
+```{r part2}
+values <- c(89, 90, 78, 81, 62, 
+            78, 99, 94, 83, 51, 
+            77, 85, 99, 80, 99, 
+            56, 97, 87, 79, 88)
+
+# Create the matrix
+transcriptome <- matrix(values, nrow = 5, byrow = TRUE)
+
+# Assign column names
+colnames(transcriptome) <- c("Control", "Nitrogen", "Phosphate", "Potassium")
+
+# Assign row names
+rownames(transcriptome) <- c("GeneA", "GeneB", "GeneC", "GeneD", "GeneE")
+
+# Print the matrix
+print(transcriptome)
+
+# Calculate the average expression for each gene
+expression_average <- rowMeans(transcriptome)
+
+# Print the average expression vector
+print(expression_average)
+
+# Order the rows of the matrix by the average expression values in descending order
+sorted_indices <- order(expression_average, decreasing = TRUE)
+
+# Reorder the matrix
+sorted_transcriptome <- transcriptome[sorted_indices, ]
+
+# Convert the sorted matrix into a data frame
+sorted_genes <- as.data.frame(sorted_transcriptome)
+
+# Print the sorted data frame
+print(sorted_genes)
+```
+
+## Part 2
+
+```{r part3, echo=TRUE}
+# Set the working directory to the location of the file
+#setwd("nattada/NYU/Transcriptomics/Hw1_Nivedita/")
+
+# Load the file into a data frame
+expvalues_df <- read.table("expvalues.txt", header = TRUE, sep = " ")
+
+# Print the loaded data frame
+head(expvalues_df)
+
+# Assuming the first three columns are control and the last three are treatment
+control_columns <- expvalues_df[, 1:3]
+treatment_columns <- expvalues_df[, 4:6]
+
+# Calculate the mean for control and treatment groups
+control_means <- apply(control_columns, 1, mean)
+treatment_means <- apply(treatment_columns, 1, mean)
+
+# Add new columns control and treatment means
+expvalues_df$Control_Mean <- control_means
+expvalues_df$Treatment_Mean <- treatment_means
+
+# Print the mean values
+head(expvalues_df)
+
+# Calculate fold change (treatment mean / control mean)
+fold_change <- treatment_means / control_means
+
+# Append the fold change to the data frame
+expvalues_df$Fold_Change <- fold_change
+
+# Print the mean values with fold change
+head(expvalues_df)
+
+# Calculate log2 fold change
+log2_fold_change <- log2(fold_change)
+
+# Append the log2 fold change to the data frame
+expvalues_df$LFC <- log2_fold_change
+
+# Print the mean values with fold change
+head(expvalues_df)
+
+# Count genes with LFC > 1 or LFC < -1
+genes_lfc_gt_1 <- sum(expvalues_df$LFC > 1)
+genes_lfc_lt_minus1 <- sum(expvalues_df$LFC < -1)
+
+# Total genes with LFC > 1 or LFC < -1
+genes_with_lfc <- genes_lfc_gt_1 + genes_lfc_lt_minus1
+
+# Print the results
+cat("Genes with Log2 Fold Change > 1:", genes_lfc_gt_1, "\n")
+cat("Genes with Log2 Fold Change < -1:", genes_lfc_lt_minus1, "\n")
+cat("Total genes with Log2 Fold Change > 1 or < -1:", genes_with_lfc, "\n")
+
+# Extract genes with LFC > 1
+induced_genes <- rownames(expvalues_df)[expvalues_df$LFC > 1]
+
+# Write column names to file
+writeLines(induced_genes, "Induced_genes.txt")
+
+# Create a subset of data for induced genes only
+induced_data <- expvalues_df[induced_genes, 1:6]
+
+head(induced_data)
+
+# Prepare PDF device for plotting
+pdf("boxplot.pdf")
+
+# Create boxplot
+boxplot(induced_data, 
+        main = "Expression Distribution of Induced Genes",
+        xlab = "Experiments",
+        ylab = "Expression Level",
+        col = rainbow(ncol(induced_data)))
+
+# Close the PDF device
+dev.off()
+```
+
