@@ -1,0 +1,270 @@
+---
+title: "RNAseqHW"
+author: "Nivedita Attada"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error=TRUE)
+```
+
+### Data source
+
+The data was downloaded from NCBI GEO ([GSE124548](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE124548)). The study looks at the affect of a drug (Lumacaftor/Ivacaftor) to treat cystic fibrosis ( CF ). This drug has been approved for individuals that are homozygous for CFTR ( Cystic fibrosis transmembrane conductance regulator ) mutation. Clinical studies have observed that there is a large variation in the response thus the researchers are looking at RNA expressions to help identify the cause of this variation. Blood samples were taken from : 
+- 20 healthy patients ( do not have CF )
+- 20 patients that CF ( before treatment )
+- 20 patients that have CF ( after treatment - these are paired with those before treatment)
+
+I have extracted the raw read counts from the original matrix and provided it with the homework. The healthy patients have "HC" in their names, CF patients before treatment are labeled "Base" and after treatment are labeled "V2".
+
+For the homework we will compare the HC with Base to do a simple unpaired differentially expression.
+
+### Step 1 (5pts)
+
+Load the file **GSE124548.raw.txt** and create a new dataframe with just the columns with the raw counts for healthy (HC) and CF patients before treatment (Base) and call it **readcount**. Use the *third* column (EntrezID) in the original file as the rownames of readcount.
+
+```{r readdata}
+#loads data
+data <- read.table("/Users/nattada/NYU/Transcriptomics/Hw4_Nivedita/GSE124548.raw.fixed.txt", header = TRUE, sep = "\t")
+#stores all the columns with HC in them
+hc_columns <- grep("HC", names(data))
+#stores all the columns with Base in them
+cf_base_columns <- grep("Base", names(data))
+#combines HC and Base into one dataframe
+readcount <- data[, c(hc_columns, cf_base_columns)]
+#assigns EntrezIDs as rownames
+rownames(readcount) <- data$EntrezID
+
+#prints first 5 rows of readCount
+head(readcount)
+
+```
+
+
+### Step 2 (5pts)
+
+Create a dataframe, called **expgroup**, with one column, labeled **condition**, that correctly assigns which column is healthy and which is CF. Use the column names of readount as rownames of expgroup.
+
+```{r createfactor}
+
+#Assigns Healthy or CF based on the column names
+conditions <- ifelse(grepl("HC", colnames(readcount)), "Healthy", "CF")
+#creates a dataframe with the conditions and their corresponding names
+expgroup <- data.frame(condition = conditions, row.names = colnames(readcount))
+
+#shows the first 5 rows
+head(expgroup)
+
+```
+
+### Step 3 (5pts)
+
+Load the Deseq2 package ( install if necessary ) and create a Counts Dataset Matrix using the command **DESeqDataSetFromMatrix()** and call it **cds**.
+
+```{r runDESeq2} 
+
+#installs packages BiocManager and DESeq2
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+if (!requireNamespace("DESeq2", quietly = TRUE))
+  BiocManager::install("DESeq2")
+
+#downloads DESeq2
+library(DESeq2)
+
+#creates cds object using data from readcount and expgroup variables we created above
+cds <- DESeqDataSetFromMatrix(countData = readcount,
+                              colData = expgroup,
+                              design = ~ condition)
+
+#prints information about cds object
+cds
+
+
+```
+
+### Step 4 (5pts)
+
+Use the functions **estimateSizeFactors** and **estimateDispersions** so that Deseq2 can correct for size of library and estimates the dispersion. Plot the dispersion using **plotDispEsts**. What does the graph tell you?
+
+This graph shows us that the gene expression is consistent because we can see that there is low dispersion at high counts. We can also see that the trend line follows the points pretty well and therefore means that we have good quality data.
+
+
+
+```{r estimate}
+#performs estimateSizeFactors and estimateDispersions on cds object
+cds <- estimateSizeFactors(cds)
+cds <- estimateDispersions(cds)
+#plots dispersion to a graph
+plotDispEsts(cds)
+
+```
+
+### Step 5 (5pts)
+
+Perform the Differential expression and obtain the results using **DESeq** and **results** functions.
+
+
+```{r deseqres}
+#performs differential expression on cds object
+cds <- DESeq(cds)
+#stores results to res
+res <- results(cds)
+#prints first 5 rows of res
+head(res)
+
+```
+
+### Step 6 (5pts)
+
+How many genes have an adjusted p-value of less than 0.05 and log2FoldChange greater than 1 or less than -1 ? Save this list of genes as **diffexpgenes**
+
+209 genes have an adjusted p-value of less than 0.05 and log2FoldChange greater than 1 or less than -1.
+
+```{r diffexp}
+
+#stores genes that have adjusted p-value less than 0.05 and log2FoldChange greater than 1 or less than -1 into diffexpgenes variable
+diffexpgenes <- res[which(res$padj < 0.05 & abs(res$log2FoldChange) > 1), ]
+#stores the number of rows that correspond with number of genes
+num_diffexpgenes <- nrow(diffexpgenes)
+num_diffexpgenes
+#print the first 5 rows of diffexpgenes
+head(diffexpgenes)
+
+```
+
+
+### Step 7 (5pts)
+
+Get the normalized values of the counts data in cds using the counts() function with
+option normalized=T and call this normvalues.
+
+```{r normvalues}
+
+#normalizes cds
+normvalues <- counts(cds, normalized = TRUE)
+
+
+```
+
+### Step 8 (5pts)
+
+Create a new matrix or dataframe that contains the expression values from normvalues for just
+the diffexpgenes and call it diffexpvalues.
+
+```{r diffvalues}
+
+#contains expression values from normvalues
+diffexpvalues <- normvalues[rownames(diffexpgenes), ]
+
+
+```
+
+### Step 9 (10pts)
+
+Cluster the differentially expressed genes using hierarchical clustering and use the cutree
+function to create 8 groups. How many genes are in each group?
+
+```{r diffgroups}
+
+
+distance_matrix <- dist(t(diffexpvalues))
+#clusters using distance_matrix
+hclust_genes <- hclust(distance_matrix)
+#clusters into 8 clusters
+clusters <- cutree(hclust_genes, k = 8)
+#outputs table that tells us how many genes per cluster
+table(clusters)
+
+
+```
+
+### Step 10 (10pts)
+
+Create a heatmap of all the genes using the **pheatmap** package. Some options you should pay attention to are:
+- scale ( scaling gene values shows expression pattern changes rather than magnitude)
+- cluster_rows ( define how the rows should be clustered)
+- annotation_col ( color code the different samples based on a category- health or cf)
+- annotation_row ( color code the different genes based on the cluster they belong to)
+
+```{r heatmap}
+
+#installs and downloads pheatmaps
+if (!requireNamespace("pheatmap", quietly = TRUE)) install.packages("pheatmap")
+library(pheatmap)
+
+#assigns the variables and conditions we want to display in the heatmap
+annotation_col <- data.frame(condition = expgroup$condition)
+rownames(annotation_col) <- rownames(expgroup)
+
+#sets up the heatmap function and outputs the heatmap
+pheatmap(diffexpvalues,
+         scale = "row",
+         cluster_rows = TRUE,
+         cluster_cols = TRUE,
+         annotation_col = annotation_col
+         )
+
+
+```
+
+### Step 11 (10pts)
+
+Use the GOstats package to determing which GO-terms are enriched in **diffexpgenes**. To do this you will need to install the following packages from Bioconductor:
+
+```{r eval=F}
+#installs go term analysis libraries
+BiocManager::install("GOstats")
+BiocManager::install("GO.db")
+BiocManager::install("Category")
+BiocManager::install("org.Hs.eg.db")
+
+
+```
+
+
+```{r loadlibraries}
+
+#loads the libraries
+library(GOstats)
+library(org.Hs.eg.db)
+library(GO.db)
+
+
+```
+
+Now create a new **GOHyperGParams** object using the **new()** function and save it as variable called **params**. The **geneIds** is **diffexpgenes**. These should be the EntrezIDs we made into rownames in the beginning. The **universeGeneIds** is the rownames of **readcount**. The annotation is **org.Hs.eg** and the ontology we are going to use is **BP** with a pvaluecutoff of 0.001 and our testDirection is **over**.
+
+```{r gostats}
+
+#Sets up variables for go term analysis
+geneIds <- rownames(diffexpgenes)
+universeGeneIds <- rownames(readcount)
+
+#uses new function to create an object
+params <- new("GOHyperGParams",
+              geneIds = geneIds,
+              universeGeneIds = universeGeneIds,
+              annotation = "org.Hs.eg.db",
+              ontology = "BP",
+              pvalueCutoff = 0.001,
+              conditional = FALSE,
+              testDirection = "over")
+
+
+#performs go term analysis
+goResults <- hyperGTest(params)
+#prints out the summary of go terms
+summary(goResults)
+
+
+```
+
+### Step 12 (5pts)
+
+What conclusions can you make about your analysis?
+
+
+
+The most enriched GO terms are associated with immune responses, defense responses, and inflammatory responses. Many terms also indicate regulation of immune processes, such as "regulation of immune response" (GO:0050776), "positive regulation of immune system process" (GO:0002684), and "negative regulation of immune response" (GO:0050777). The presence of both positive and negative regulatory terms indicates many different proccesses for immune activities. GO terms related to cell communication and signaling, like "cell surface receptor signaling pathway" (GO:0007166) and "signal transduction" (GO:0007165), highlight the involvement of cellular communication mechanisms. Specific immune functions, such as "T cell differentiation" (GO:0030216) and "complement activation" (GO:0006956), are also significantly enriched, indicating the involvement of adaptive immunity and complement system activities. The "multicellular organismal process" and "response to stimulus" show that there differential expression may impact more than just the immune system even though that is what is significantly impacted.
+

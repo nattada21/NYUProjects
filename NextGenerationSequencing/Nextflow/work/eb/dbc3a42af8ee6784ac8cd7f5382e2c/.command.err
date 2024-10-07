@@ -1,0 +1,18 @@
+07:27:12.939 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/share/apps/picard/2.17.11/picard.jar!/com/intel/gkl/native/libgkl_compression.so
+[Mon May 13 07:27:12 EDT 2024] SortSam INPUT=NA18591.bam OUTPUT=NA18591.sorted.bam SORT_ORDER=coordinate TMP_DIR=[/state/partition1/job-46429632] VALIDATION_STRINGENCY=LENIENT MAX_RECORDS_IN_RAM=10000000    VERBOSITY=INFO QUIET=false COMPRESSION_LEVEL=5 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+[Mon May 13 07:27:12 EDT 2024] Executing as na2318@cm002.hpc.nyu.edu on Linux 5.14.0-284.40.1.el9_2.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_271-b09; Deflater: Intel; Inflater: Intel; Picard version: 2.17.11-SNAPSHOT
+INFO	2024-05-13 07:27:13	SortSam	Finished reading inputs, merging and writing to output now.
+[Mon May 13 07:27:15 EDT 2024] picard.sam.SortSam done. Elapsed time: 0.04 minutes.
+Runtime.totalMemory()=2058354688
+07:27:19.426 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/share/apps/picard/2.17.11/picard.jar!/com/intel/gkl/native/libgkl_compression.so
+[Mon May 13 07:27:19 EDT 2024] SortSam INPUT=NA18627.bam OUTPUT=NA18627.sorted.bam SORT_ORDER=coordinate TMP_DIR=[/state/partition1/job-46429632] VALIDATION_STRINGENCY=LENIENT MAX_RECORDS_IN_RAM=10000000    VERBOSITY=INFO QUIET=false COMPRESSION_LEVEL=5 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+[Mon May 13 07:27:19 EDT 2024] Executing as na2318@cm002.hpc.nyu.edu on Linux 5.14.0-284.40.1.el9_2.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_271-b09; Deflater: Intel; Inflater: Intel; Picard version: 2.17.11-SNAPSHOT
+INFO	2024-05-13 07:27:20	SortSam	Finished reading inputs, merging and writing to output now.
+[Mon May 13 07:27:21 EDT 2024] picard.sam.SortSam done. Elapsed time: 0.04 minutes.
+Runtime.totalMemory()=2058354688
+07:27:25.726 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/share/apps/picard/2.17.11/picard.jar!/com/intel/gkl/native/libgkl_compression.so
+[Mon May 13 07:27:25 EDT 2024] SortSam INPUT=NA18757.bam OUTPUT=NA18757.sorted.bam SORT_ORDER=coordinate TMP_DIR=[/state/partition1/job-46429632] VALIDATION_STRINGENCY=LENIENT MAX_RECORDS_IN_RAM=10000000    VERBOSITY=INFO QUIET=false COMPRESSION_LEVEL=5 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+[Mon May 13 07:27:25 EDT 2024] Executing as na2318@cm002.hpc.nyu.edu on Linux 5.14.0-284.40.1.el9_2.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_271-b09; Deflater: Intel; Inflater: Intel; Picard version: 2.17.11-SNAPSHOT
+INFO	2024-05-13 07:27:26	SortSam	Finished reading inputs, merging and writing to output now.
+[Mon May 13 07:27:27 EDT 2024] picard.sam.SortSam done. Elapsed time: 0.04 minutes.
+Runtime.totalMemory()=2058354688

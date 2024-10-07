@@ -1,0 +1,55 @@
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 189254 sequences (19109952 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 74612, 8, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (238, 273, 314)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (86, 466)
+[M::mem_pestat] mean and std.dev: (277.98, 57.03)
+[M::mem_pestat] low and high boundaries for proper pairs: (10, 542)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_process_seqs] Processed 189254 reads in 69.608 CPU sec, 4.754 real sec
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa mem -M -t 15 -R @RG\tID:NA18757.id\tSM:NA18757\tPL:ILLUMINA\tLB:NA18757.lb /scratch/work/courses/BI7653/hw3.2024/hg38/Homo_sapiens.GRCh38.dna_sm.primary_assembly.normalized.fa ../fq.processed/SRR708363_1.filt.100k.fP.fastq.gz ../fq.processed/SRR708363_2.filt.100k.rP.fastq.gz
+[main] Real time: 9.249 sec; CPU: 73.213 sec
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 196074 sequences (19602432 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (18, 80646, 10, 5)
+[M::mem_pestat] analyzing insert size distribution for orientation FF...
+[M::mem_pestat] (25, 50, 75) percentile: (226, 306, 339)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 565)
+[M::mem_pestat] mean and std.dev: (267.28, 92.08)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 678)
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (418, 457, 497)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (260, 655)
+[M::mem_pestat] mean and std.dev: (457.39, 60.21)
+[M::mem_pestat] low and high boundaries for proper pairs: (181, 734)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (47, 100, 133)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 305)
+[M::mem_pestat] mean and std.dev: (79.78, 42.11)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 391)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF
+[M::mem_pestat] skip orientation RF
+[M::mem_process_seqs] Processed 196074 reads in 65.842 CPU sec, 4.487 real sec
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa mem -M -t 15 -R @RG\tID:NA18627.id\tSM:NA18627\tPL:ILLUMINA\tLB:NA18627.lb /scratch/work/courses/BI7653/hw3.2024/hg38/Homo_sapiens.GRCh38.dna_sm.primary_assembly.normalized.fa ../fq.processed/ERR240369_1.filt.100k.fP.fastq.gz ../fq.processed/ERR240369_2.filt.100k.rP.fastq.gz
+[main] Real time: 8.861 sec; CPU: 69.538 sec
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 192862 sequences (19241486 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (4, 80302, 4, 4)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (137, 171, 217)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 377)
+[M::mem_pestat] mean and std.dev: (180.90, 58.12)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 457)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_process_seqs] Processed 192862 reads in 53.271 CPU sec, 3.659 real sec
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa mem -M -t 15 -R @RG\tID:NA18591.id\tSM:NA18591\tPL:ILLUMINA\tLB:NA18591.lb /scratch/work/courses/BI7653/hw3.2024/hg38/Homo_sapiens.GRCh38.dna_sm.primary_assembly.normalized.fa ../fq.processed/SRR792922_1.filt.100k.fP.fastq.gz ../fq.processed/SRR792922_2.filt.100k.rP.fastq.gz
+[main] Real time: 7.583 sec; CPU: 56.961 sec

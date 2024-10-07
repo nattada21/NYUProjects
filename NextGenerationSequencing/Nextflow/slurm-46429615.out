@@ -1,0 +1,46 @@
+N E X T F L O W  ~  version 23.04.1
+Launching `main.nf` [insane_sax] DSL2 - revision: 5b03c1b785
+[-        ] process > fastp    [  0%] 0 of 1
+[-        ] process > bwaAlign -
+[-        ] process > sam2bam  -
+
+executor >  slurm (1)
+[f8/47e143] process > fastp    [  0%] 0 of 1
+[-        ] process > bwaAlign -
+[-        ] process > sam2bam  -
+
+executor >  slurm (1)
+[f8/47e143] process > fastp    [  0%] 0 of 1
+[-        ] process > bwaAlign -
+[-        ] process > sam2bam  -
+
+executor >  slurm (2)
+[f8/47e143] process > fastp    [100%] 1 of 1 ✔
+[be/0de79e] process > bwaAlign [  0%] 0 of 1
+[-        ] process > sam2bam  -
+
+executor >  slurm (2)
+[f8/47e143] process > fastp    [100%] 1 of 1 ✔
+[be/0de79e] process > bwaAlign [  0%] 0 of 1
+[-        ] process > sam2bam  -
+
+executor >  slurm (3)
+[f8/47e143] process > fastp    [100%] 1 of 1 ✔
+[be/0de79e] process > bwaAlign [100%] 1 of 1 ✔
+[eb/dbc3a4] process > sam2bam  [  0%] 0 of 1
+
+executor >  slurm (3)
+[f8/47e143] process > fastp    [100%] 1 of 1 ✔
+[be/0de79e] process > bwaAlign [100%] 1 of 1 ✔
+[eb/dbc3a4] process > sam2bam  [  0%] 0 of 1
+
+executor >  slurm (3)
+[f8/47e143] process > fastp    [100%] 1 of 1 ✔
+[be/0de79e] process > bwaAlign [100%] 1 of 1 ✔
+[eb/dbc3a4] process > sam2bam  [100%] 1 of 1 ✔
+Completed at: 13-May-2024 07:27:33
+Duration    : 3m 10s
+CPU hours   : 0.3
+Succeeded   : 3
+
+

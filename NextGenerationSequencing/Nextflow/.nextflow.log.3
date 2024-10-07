@@ -1,0 +1,67 @@
+May-13 06:34:25.148 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf
+May-13 06:34:25.397 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 23.04.1
+May-13 06:34:25.442 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/na2318/.nextflow/plugins; core-plugins: nf-amazon@1.16.2,nf-azure@1.0.1,nf-codecommit@0.1.4,nf-console@1.0.5,nf-ga4gh@1.0.5,nf-google@1.7.3,nf-tower@1.5.12,nf-wave@0.8.2
+May-13 06:34:25.464 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+May-13 06:34:25.465 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+May-13 06:34:25.470 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+May-13 06:34:25.506 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+May-13 06:34:25.550 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /scratch/na2318/ProjectB/4.Nextflow/nextflow.config
+May-13 06:34:25.551 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /scratch/na2318/ProjectB/4.Nextflow/nextflow.config
+May-13 06:34:25.606 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+May-13 06:34:26.885 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 by global default
+May-13 06:34:26.919 [main] INFO  nextflow.cli.CmdRun - Launching `main.nf` [angry_plateau] DSL2 - revision: ad0f1a5bc2
+May-13 06:34:26.920 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+May-13 06:34:26.920 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+May-13 06:34:26.931 [main] DEBUG nextflow.secret.LocalSecretsProvider - Secrets store: /home/na2318/.nextflow/secrets/store.json
+May-13 06:34:26.935 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@4832f03b] - activable => nextflow.secret.LocalSecretsProvider@4832f03b
+May-13 06:34:27.081 [main] DEBUG nextflow.Session - Session UUID: a1c5fa63-822c-45ec-863d-0b44d28bdcfe
+May-13 06:34:27.081 [main] DEBUG nextflow.Session - Run name: angry_plateau
+May-13 06:34:27.081 [main] DEBUG nextflow.Session - Executor pool size: 2
+May-13 06:34:27.117 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+May-13 06:34:27.175 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 23.04.1 build 5866
+  Created: 15-04-2023 06:51 UTC (02:51 EDT)
+  System: Linux 5.14.0-284.40.1.el9_2.x86_64
+  Runtime: Groovy 3.0.16 on OpenJDK 64-Bit Server VM 11.0.22+7-adhoc.root.jdk11u
+  Encoding: UTF-8 (UTF-8)
+  Process: 1281335@cm017.hpc.nyu.edu [10.32.35.30]
+  CPUs: 1 - Mem: 377.1 GB (194.8 GB) - Swap: 0 (0)
+May-13 06:34:27.222 [main] DEBUG nextflow.Session - Work-dir: /scratch/na2318/ProjectB/4.Nextflow/work [gpfs]
+May-13 06:34:27.223 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /scratch/na2318/ProjectB/4.Nextflow/bin
+May-13 06:34:27.237 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+May-13 06:34:27.268 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+May-13 06:34:27.305 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+May-13 06:34:27.334 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 2; maxThreads: 1000
+May-13 06:34:27.721 [main] DEBUG nextflow.Session - Session start
+May-13 06:34:28.278 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+May-13 06:34:28.436 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+May-13 06:34:28.436 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+May-13 06:34:28.466 [main] DEBUG nextflow.executor.Executor - [warm up] executor > slurm
+May-13 06:34:28.485 [main] DEBUG n.processor.TaskPollingMonitor - Creating task monitor for executor 'slurm' > capacity: 100; pollInterval: 5s; dumpInterval: 5m 
+May-13 06:34:28.501 [main] DEBUG n.executor.AbstractGridExecutor - Creating executor 'slurm' > queue-stat-interval: 1m
+May-13 06:34:28.686 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+May-13 06:34:28.686 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+May-13 06:34:28.692 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+May-13 06:34:28.693 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+May-13 06:34:28.708 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: sam2bam, bwaAlign, fastp
+May-13 06:34:28.709 [main] DEBUG nextflow.Session - Igniting dataflow network (3)
+May-13 06:34:28.709 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > fastp
+May-13 06:34:28.722 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > bwaAlign
+May-13 06:34:28.722 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > sam2bam
+May-13 06:34:28.735 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+May-13 06:34:28.735 [main] DEBUG nextflow.Session - Session await
+May-13 06:34:29.148 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process fastp > jobId: 46429435; workDir: /scratch/na2318/ProjectB/4.Nextflow/work/71/305e8d36ca6dd0350688d26d6d9c39
+May-13 06:34:29.149 [Task submitter] INFO  nextflow.Session - [71/305e8d] Submitted process > fastp
+May-13 06:35:18.526 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 46429435; id: 1; name: fastp; status: COMPLETED; exit: 0; error: -; workDir: /scratch/na2318/ProjectB/4.Nextflow/work/71/305e8d36ca6dd0350688d26d6d9c39 started: 1715596498525; exited: 2024-05-13T10:35:15.791341Z; ]
+May-13 06:35:18.647 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process bwaAlign > jobId: 46429438; workDir: /scratch/na2318/ProjectB/4.Nextflow/work/29/05685b7e26e74a875030cf3e72dcef
+May-13 06:35:18.647 [Task submitter] INFO  nextflow.Session - [29/05685b] Submitted process > bwaAlign
+May-13 06:36:48.527 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 46429438; id: 2; name: bwaAlign; status: COMPLETED; exit: 0; error: -; workDir: /scratch/na2318/ProjectB/4.Nextflow/work/29/05685b7e26e74a875030cf3e72dcef started: 1715596578527; exited: 2024-05-13T10:36:43.662198Z; ]
+May-13 06:36:48.657 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process sam2bam > jobId: 46429439; workDir: /scratch/na2318/ProjectB/4.Nextflow/work/cc/09403a617dabce77d5827617799b99
+May-13 06:36:48.657 [Task submitter] INFO  nextflow.Session - [cc/09403a] Submitted process > sam2bam
+May-13 06:37:23.527 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 46429439; id: 3; name: sam2bam; status: COMPLETED; exit: 0; error: -; workDir: /scratch/na2318/ProjectB/4.Nextflow/work/cc/09403a617dabce77d5827617799b99 started: 1715596623526; exited: 2024-05-13T10:37:18.746686Z; ]
+May-13 06:37:23.530 [main] DEBUG nextflow.Session - Session await > all processes finished
+May-13 06:37:23.531 [main] DEBUG nextflow.Session - Session await > all barriers passed
+May-13 06:37:23.538 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=3; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=17m 30s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=15; peakMemory=48 GB; ]
+May-13 06:37:23.705 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+May-13 06:37:23.748 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+May-13 06:37:23.748 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

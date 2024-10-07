@@ -1,0 +1,227 @@
+---
+title: "Hw5-Single Cell RNA-seq"
+author: "Nivedita Attada"
+date: "2024-08-12"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Step 0: Please Install and Load the Following Packages
+
+```{r loadlibraries}
+#downloads necessary libraries
+library(dplyr)
+library(Seurat)
+library(patchwork)
+```
+
+
+## Step 1: Load the TSV file
+
+```{r loadtsv}
+
+#loads the data from folder into a data frame
+data <- read.table("/Users/nattada/NYU/Transcriptomics/Hw5_Nivedita/SingleCellRNAseq/GSM3036909.tsv", header = TRUE, sep = "\t", row.names = 1)
+
+```
+
+## Step 2: Create a Seurat Object
+Call the object pdac1. You set the project argument in the CreateSeuratObject the same. Here we will also request the same criteria as mentioned in the workflow: min.cells=3 and min.features=200.
+
+```{r seuratobject}
+
+#creates seurat object called pdac1
+pdac1 <- CreateSeuratObject(counts = data, project = "pdac1", min.cells = 3, min.features = 200)
+
+```
+
+
+## Step 3: Label the Mitochondrial Genes
+We don’t want to use cells that have too many mitochondrial genes, so we create a new column to help us summarize how many mitochondrial genes were identified in the different cells.
+
+```{r mitochondrialgenes}
+
+#finds mitochondrial genes and stores as a percentage
+pdac1[["percent.mt"]] <- PercentageFeatureSet(pdac1, pattern = "^MT-")
+
+```
+
+## Step 4: Visualize the Distribution
+Use the VlnPlot function to view the number of counts, number of features, and the percent mitochondrial genes.
+
+```{r visualize}
+
+#outputs violin plot with features, count, and percent of mitochondrial genes
+VlnPlot(pdac1 ,features = c("nFeature_RNA", "nCount_RNA","percent.mt"),ncol = 3,pt.size=0)
+
+```
+
+
+## Step 5: Filter Data
+Only keep the cells that have greater than 200 and less than 2500 unique features and the percent mitochondrial genes is less than 5.
+
+```{r filter}
+
+#subsets original seurat object into the parameters given
+pdac1_filter <- subset(x = pdac1, subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 5)
+
+```
+
+## Step 6: Normalize Data
+Taking the log of the data, makes the data more normal distributed. Normalize data using the LogNormaliza method with a scale factor of 10,000
+
+```{r normalize}
+
+#normalizes data to so there is more uniformity in dataset
+pdac1_filter <- NormalizeData(pdac1_filter, normalization.method = "LogNormalize", scale.factor = 10000)
+
+```
+
+## Step 7: Calculate Gene Variation
+Find the 2000 most variable genes using the FindVariableFeatures command using the vst method.
+
+```{r genevariation}
+
+#calculates gene variation using find variable features function
+pdac1_filter <- FindVariableFeatures(pdac1_filter, selection.method = "vst", nfeatures = 2000)
+
+```
+
+## Step 8: Scale Data
+Scaling the data normalizes the standard deviation and centers the data. This is an important step before performing PCA.
+
+```{r scaledata}
+
+#scales data to prepare for PCA
+pdac1_filter <- ScaleData(pdac1_filter)
+
+```
+
+## Step 9: PCA
+Run PCA
+
+```{r pca}
+
+#runs PCA
+pdac1_filter <- RunPCA(pdac1_filter, features = VariableFeatures(object = pdac1_filter))
+
+```
+
+## Step 10: Visualize data using VizDimLoadings and DimPlot function
+Can you tell from the PCA analyis, the number of cell types that are present?
+
+```{r dimplot}
+
+#plots in two different ways to visualize PCA
+VizDimLoadings(pdac1_filter)
+DimPlot(pdac1_filter)
+
+```
+
+## Step 11: PCA Heatmaps
+Another way to visualize the variation explained by the PC is creating heatmaps. Create heatmaps of the first 10 dimensions and include 200 cells.
+
+```{r pcaheatmaps}
+
+#outputs heatmap as another method of visualization
+DimHeatmap(object = pdac1_filter, dims = 1:10, cells = 200, balanced = TRUE)
+
+```
+
+## Step 12: Dimensionality
+To make this more quantitative, let’s see when does the variation reach the lowest amount of variation explained. Use the JackStraw method with 100 replicates and score the first 20 dimensions.
+
+```{r dimensionality}
+
+#uses jackstraw function and score jack straw function to prepare data for jackstraw plot
+pdac1_filter <- JackStraw(object = pdac1_filter, num.replicate = 100, dims = 20)
+pdac1_filter <- ScoreJackStraw(object = pdac1_filter, dims = 1:20)
+
+```
+
+Plot the results for the first 20 dimensions.
+
+```{r 20dim}
+
+#outputs jackstraw plot
+JackStrawPlot(object = pdac1_filter, dims = 1:20)
+
+```
+
+Use the elbow plot
+
+```{r elbowplot}
+
+#outputs elbow plot
+ElbowPlot(pdac1_filter)
+
+```
+
+## Step 13: Clustering
+Now we will group together the cells based on where they are located in the different dimensions. Use the FindNeighbors function using the first 9 dimensions.
+
+And then identify the clusters usng the FindClusters function.
+
+```{r clustering}
+
+#finds locations and clusters of all the data points based on the PCA
+pdac1_filter <- FindNeighbors(pdac1_filter,reduction="pca", dims=1:9)
+pdac1_filter <- FindClusters(pdac1_filter, resolution = 1.0)
+
+```
+
+## Step 14: Perform a UMAP analysis using the first 9 dimensions using RunUMAP and then visualize it using DimPlot.
+How many clusters do you get? How many possible mistakes do you see?
+
+I have 5 clusters and it looks like there are two clusters of cluster 1 cells which could be a possible mistake.
+
+```{r umap}
+
+#runs and outputs UMAP
+pdac1_filter <- RunUMAP(object = pdac1_filter, dims = 1:9)
+DimPlot(object = pdac1_filter, reduction = "umap", label = TRUE, pt.size = 0.5)
+
+```
+
+## Step 15: Identify the markers that compare each cluster agains all. Report only positively markers. Use the FindAllMarkers for this.
+
+```{r findmarkers}
+
+#finds all the markers
+markers <- FindAllMarkers(object = pdac1_filter, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25)
+
+#we use this to check first 5 rows of markers for each cluster
+head(markers[markers$cluster == 0, ])
+head(markers[markers$cluster == 1, ])
+head(markers[markers$cluster == 2, ])
+head(markers[markers$cluster == 3, ])
+head(markers[markers$cluster == 4, ])
+
+```
+
+## Step 16: Create a violin plot using one feature from each cluster.
+
+```{r violinfeature}
+
+#creates variable with top marker for each cluster
+top_markers <- markers %>%
+  group_by(cluster) %>%
+  top_n(n = 1, wt = avg_log2FC)
+
+#creates violin plot for top marker genes per cluster
+VlnPlot(object = pdac1_filter, features = top_markers$gene, pt.size = 0.1)
+
+```
+
+## Step 17: Create a feature plot using the same features as before. 
+
+```{r featureplot}
+
+#outputs feature plot for the top marker genes
+FeaturePlot(pdac1_filter, raster=FALSE, features = top_markers$gene)
+
+```
+

@@ -1,0 +1,141 @@
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+Read1 before filtering:
+total reads: 100000
+total bases: 10100000
+Q20 bases: 9714321(96.1814%)
+Q30 bases: 9150670(90.6007%)
+
+Read2 before filtering:
+total reads: 100000
+total bases: 10100000
+Q20 bases: 9608913(95.1378%)
+Q30 bases: 9049778(89.6018%)
+
+Read1 after filtering:
+total reads: 94627
+total bases: 9554976
+Q20 bases: 9326282(97.6065%)
+Q30 bases: 8827146(92.3827%)
+
+Read2 aftering filtering:
+total reads: 94627
+total bases: 9554976
+Q20 bases: 9312857(97.466%)
+Q30 bases: 8806496(92.1666%)
+
+Filtering result:
+reads passed filter: 189254
+reads failed due to low quality: 9540
+reads failed due to too many N: 0
+reads failed due to too short: 1206
+reads with adapter trimmed: 1568
+bases trimmed due to adapters: 73494
+
+Duplication rate: 0%
+
+Insert size peak (evaluated by paired-end reads): 171
+
+JSON report: NA18757.fastp.json
+HTML report: NA18757.fastp.html
+
+fastp -i /scratch/work/courses/BI7653/projectB.2024/SRR708363_1.filt.100k.fastq.gz -I /scratch/work/courses/BI7653/projectB.2024/SRR708363_2.filt.100k.fastq.gz -o SRR708363_1.filt.100k.fP.fastq.gz -O SRR708363_2.filt.100k.rP.fastq.gz --length_required 76 --detect_adapter_for_pe --n_base_limit 50 --html NA18757.fastp.html --json NA18757.fastp.json 
+fastp v0.20.1, time used: 7 seconds
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+Read1 before filtering:
+total reads: 100000
+total bases: 10000000
+Q20 bases: 9827630(98.2763%)
+Q30 bases: 9344203(93.442%)
+
+Read2 before filtering:
+total reads: 100000
+total bases: 10000000
+Q20 bases: 9638899(96.389%)
+Q30 bases: 8906686(89.0669%)
+
+Read1 after filtering:
+total reads: 98037
+total bases: 9801216
+Q20 bases: 9653678(98.4947%)
+Q30 bases: 9197852(93.844%)
+
+Read2 aftering filtering:
+total reads: 98037
+total bases: 9801216
+Q20 bases: 9538342(97.3179%)
+Q30 bases: 8836678(90.159%)
+
+Filtering result:
+reads passed filter: 196074
+reads failed due to low quality: 3252
+reads failed due to too many N: 0
+reads failed due to too short: 674
+reads with adapter trimmed: 1070
+bases trimmed due to adapters: 40222
+
+Duplication rate: 0.0477636%
+
+Insert size peak (evaluated by paired-end reads): 166
+
+JSON report: NA18627.fastp.json
+HTML report: NA18627.fastp.html
+
+fastp -i /scratch/work/courses/BI7653/projectB.2024/ERR240369_1.filt.100k.fastq.gz -I /scratch/work/courses/BI7653/projectB.2024/ERR240369_2.filt.100k.fastq.gz -o ERR240369_1.filt.100k.fP.fastq.gz -O ERR240369_2.filt.100k.rP.fastq.gz --length_required 76 --detect_adapter_for_pe --n_base_limit 50 --html NA18627.fastp.html --json NA18627.fastp.json 
+fastp v0.20.1, time used: 7 seconds
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+Read1 before filtering:
+total reads: 100000
+total bases: 10000000
+Q20 bases: 9762274(97.6227%)
+Q30 bases: 9338781(93.3878%)
+
+Read2 before filtering:
+total reads: 100000
+total bases: 10000000
+Q20 bases: 9683652(96.8365%)
+Q30 bases: 9278412(92.7841%)
+
+Read1 after filtering:
+total reads: 96431
+total bases: 9620743
+Q20 bases: 9478024(98.5165%)
+Q30 bases: 9098086(94.5674%)
+
+Read2 aftering filtering:
+total reads: 96431
+total bases: 9620743
+Q20 bases: 9478113(98.5175%)
+Q30 bases: 9108027(94.6707%)
+
+Filtering result:
+reads passed filter: 192862
+reads failed due to low quality: 6388
+reads failed due to too many N: 0
+reads failed due to too short: 750
+reads with adapter trimmed: 6154
+bases trimmed due to adapters: 79656
+
+Duplication rate: 0.0105577%
+
+Insert size peak (evaluated by paired-end reads): 155
+
+JSON report: NA18591.fastp.json
+HTML report: NA18591.fastp.html
+
+fastp -i /scratch/work/courses/BI7653/projectB.2024/SRR792922_1.filt.100k.fastq.gz -I /scratch/work/courses/BI7653/projectB.2024/SRR792922_2.filt.100k.fastq.gz -o SRR792922_1.filt.100k.fP.fastq.gz -O SRR792922_2.filt.100k.rP.fastq.gz --length_required 76 --detect_adapter_for_pe --n_base_limit 50 --html NA18591.fastp.html --json NA18591.fastp.json 
+fastp v0.20.1, time used: 6 seconds

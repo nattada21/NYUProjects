@@ -1,0 +1,134 @@
+May-13 07:18:21.868 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf
+May-13 07:18:21.964 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 23.04.1
+May-13 07:18:21.985 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/na2318/.nextflow/plugins; core-plugins: nf-amazon@1.16.2,nf-azure@1.0.1,nf-codecommit@0.1.4,nf-console@1.0.5,nf-ga4gh@1.0.5,nf-google@1.7.3,nf-tower@1.5.12,nf-wave@0.8.2
+May-13 07:18:21.995 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+May-13 07:18:21.996 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+May-13 07:18:22.000 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+May-13 07:18:22.010 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+May-13 07:18:22.030 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /scratch/na2318/ProjectB/Nextflow/nextflow.config
+May-13 07:18:22.031 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /scratch/na2318/ProjectB/Nextflow/nextflow.config
+May-13 07:18:22.054 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+May-13 07:18:22.617 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 by global default
+May-13 07:18:22.635 [main] INFO  nextflow.cli.CmdRun - Launching `main.nf` [marvelous_hamilton] DSL2 - revision: f5ff7dc298
+May-13 07:18:22.636 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+May-13 07:18:22.636 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+May-13 07:18:22.645 [main] DEBUG nextflow.secret.LocalSecretsProvider - Secrets store: /home/na2318/.nextflow/secrets/store.json
+May-13 07:18:22.648 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@4f3faa70] - activable => nextflow.secret.LocalSecretsProvider@4f3faa70
+May-13 07:18:22.706 [main] DEBUG nextflow.Session - Session UUID: 211f46d9-c824-4423-babd-53cec0845a47
+May-13 07:18:22.706 [main] DEBUG nextflow.Session - Run name: marvelous_hamilton
+May-13 07:18:22.706 [main] DEBUG nextflow.Session - Executor pool size: 4
+May-13 07:18:22.717 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=12; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+May-13 07:18:22.741 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 23.04.1 build 5866
+  Created: 15-04-2023 06:51 UTC (02:51 EDT)
+  System: Linux 5.14.0-284.40.1.el9_2.x86_64
+  Runtime: Groovy 3.0.16 on OpenJDK 64-Bit Server VM 11.0.22+7-adhoc.root.jdk11u
+  Encoding: UTF-8 (UTF-8)
+  Process: 1292807@cm017.hpc.nyu.edu [10.32.35.30]
+  CPUs: 4 - Mem: 377.1 GB (195.3 GB) - Swap: 0 (0)
+May-13 07:18:22.762 [main] DEBUG nextflow.Session - Work-dir: /scratch/na2318/ProjectB/Nextflow/work [gpfs]
+May-13 07:18:22.762 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /scratch/na2318/ProjectB/Nextflow/bin
+May-13 07:18:22.772 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+May-13 07:18:22.782 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+May-13 07:18:22.800 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+May-13 07:18:22.810 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 5; maxThreads: 1000
+May-13 07:18:22.984 [main] DEBUG nextflow.Session - Session start
+May-13 07:18:23.250 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+May-13 07:18:23.322 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+May-13 07:18:23.322 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+May-13 07:18:23.358 [main] DEBUG nextflow.executor.Executor - [warm up] executor > slurm
+May-13 07:18:23.369 [main] DEBUG n.processor.TaskPollingMonitor - Creating task monitor for executor 'slurm' > capacity: 100; pollInterval: 5s; dumpInterval: 5m 
+May-13 07:18:23.386 [main] DEBUG n.executor.AbstractGridExecutor - Creating executor 'slurm' > queue-stat-interval: 1m
+May-13 07:18:23.501 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+May-13 07:18:23.501 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+May-13 07:18:23.507 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+May-13 07:18:23.507 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+May-13 07:18:23.510 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: sam2bam, bwaAlign, fastp
+May-13 07:18:23.510 [main] DEBUG nextflow.Session - Igniting dataflow network (3)
+May-13 07:18:23.510 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > fastp
+May-13 07:18:23.511 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > bwaAlign
+May-13 07:18:23.516 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > sam2bam
+May-13 07:18:23.516 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+May-13 07:18:23.516 [main] DEBUG nextflow.Session - Session await
+May-13 07:18:23.745 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process fastp > jobId: 46429600; workDir: /scratch/na2318/ProjectB/Nextflow/work/94/b1428504e618c81e363eed0040b4db
+May-13 07:18:23.746 [Task submitter] INFO  nextflow.Session - [94/b14285] Submitted process > fastp
+May-13 07:19:03.425 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 46429600; id: 1; name: fastp; status: COMPLETED; exit: 0; error: -; workDir: /scratch/na2318/ProjectB/Nextflow/work/94/b1428504e618c81e363eed0040b4db started: 1715599123425; exited: 2024-05-13T11:19:00.368611Z; ]
+May-13 07:19:03.512 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process bwaAlign > jobId: 46429601; workDir: /scratch/na2318/ProjectB/Nextflow/work/60/2b1a20a4234694700b181541491146
+May-13 07:19:03.512 [Task submitter] INFO  nextflow.Session - [60/2b1a20] Submitted process > bwaAlign
+May-13 07:19:48.425 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 46429601; id: 2; name: bwaAlign; status: COMPLETED; exit: 0; error: -; workDir: /scratch/na2318/ProjectB/Nextflow/work/60/2b1a20a4234694700b181541491146 started: 1715599163424; exited: 2024-05-13T11:19:45.440424Z; ]
+May-13 07:19:48.483 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process sam2bam > jobId: 46429602; workDir: /scratch/na2318/ProjectB/Nextflow/work/48/ad40c1e058ccd66d8b7aa67de76386
+May-13 07:19:48.484 [Task submitter] INFO  nextflow.Session - [48/ad40c1] Submitted process > sam2bam
+May-13 07:20:43.428 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 46429602; id: 3; name: sam2bam; status: COMPLETED; exit: 0; error: -; workDir: /scratch/na2318/ProjectB/Nextflow/work/48/ad40c1e058ccd66d8b7aa67de76386 started: 1715599223427; exited: 2024-05-13T11:20:38.719312Z; ]
+May-13 07:20:43.430 [Task monitor] DEBUG nextflow.processor.TaskProcessor - Process `sam2bam` is unable to find [UnixPath]: `/scratch/na2318/ProjectB/Nextflow/work/48/ad40c1e058ccd66d8b7aa67de76386/FinalOutput` (pattern: `FinalOutput`)
+May-13 07:20:43.434 [Task monitor] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=sam2bam; work-dir=/scratch/na2318/ProjectB/Nextflow/work/48/ad40c1e058ccd66d8b7aa67de76386
+  error [nextflow.exception.MissingFileException]: Missing output file(s) `FinalOutput` expected by process `sam2bam`
+May-13 07:20:43.464 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'sam2bam'
+
+Caused by:
+  Missing output file(s) `FinalOutput` expected by process `sam2bam`
+
+Command executed:
+
+  module load samtools/intel/1.14
+     module load picard/2.17.11
+  
+     mkdir FinalOutput
+  
+     for dir in NA*; do
+         cd $dir
+         sam_file=$(echo *.sam)
+  name="${sam_file::-4}"
+  echo $name
+  samtools view -bh *.sam > $name.bam
+  
+         java -Xmx15g -XX:ParallelGCThreads=1 -jar "${PICARD_JAR}" SortSam     	INPUT=$name.bam     	OUTPUT=$name.sorted.bam     	SORT_ORDER=coordinate     	TMP_DIR="${SLURM_JOBTMP}"     	MAX_RECORDS_IN_RAM=10000000     	VALIDATION_STRINGENCY=LENIENT
+  
+     	samtools index $name.sorted.bam
+  
+  cd ../
+  
+         cp $dir/*.sorted.bam FinalOutput/
+  
+     done
+  
+     mv FinalOutput/ ../../../
+
+Command exit status:
+  0
+
+Command output:
+  NA18591
+  NA18627
+  NA18757
+
+Command error:
+  07:20:23.260 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/share/apps/picard/2.17.11/picard.jar!/com/intel/gkl/native/libgkl_compression.so
+  [Mon May 13 07:20:23 EDT 2024] SortSam INPUT=NA18591.bam OUTPUT=NA18591.sorted.bam SORT_ORDER=coordinate TMP_DIR=[/state/partition1/job-46429602] VALIDATION_STRINGENCY=LENIENT MAX_RECORDS_IN_RAM=10000000    VERBOSITY=INFO QUIET=false COMPRESSION_LEVEL=5 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+  [Mon May 13 07:20:23 EDT 2024] Executing as na2318@cm002.hpc.nyu.edu on Linux 5.14.0-284.40.1.el9_2.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_271-b09; Deflater: Intel; Inflater: Intel; Picard version: 2.17.11-SNAPSHOT
+  INFO	2024-05-13 07:20:23	SortSam	Finished reading inputs, merging and writing to output now.
+  [Mon May 13 07:20:25 EDT 2024] picard.sam.SortSam done. Elapsed time: 0.04 minutes.
+  Runtime.totalMemory()=2058354688
+  07:20:29.838 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/share/apps/picard/2.17.11/picard.jar!/com/intel/gkl/native/libgkl_compression.so
+  [Mon May 13 07:20:29 EDT 2024] SortSam INPUT=NA18627.bam OUTPUT=NA18627.sorted.bam SORT_ORDER=coordinate TMP_DIR=[/state/partition1/job-46429602] VALIDATION_STRINGENCY=LENIENT MAX_RECORDS_IN_RAM=10000000    VERBOSITY=INFO QUIET=false COMPRESSION_LEVEL=5 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+  [Mon May 13 07:20:29 EDT 2024] Executing as na2318@cm002.hpc.nyu.edu on Linux 5.14.0-284.40.1.el9_2.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_271-b09; Deflater: Intel; Inflater: Intel; Picard version: 2.17.11-SNAPSHOT
+  INFO	2024-05-13 07:20:30	SortSam	Finished reading inputs, merging and writing to output now.
+  [Mon May 13 07:20:32 EDT 2024] picard.sam.SortSam done. Elapsed time: 0.04 minutes.
+  Runtime.totalMemory()=2058354688
+  07:20:36.077 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/share/apps/picard/2.17.11/picard.jar!/com/intel/gkl/native/libgkl_compression.so
+  [Mon May 13 07:20:36 EDT 2024] SortSam INPUT=NA18757.bam OUTPUT=NA18757.sorted.bam SORT_ORDER=coordinate TMP_DIR=[/state/partition1/job-46429602] VALIDATION_STRINGENCY=LENIENT MAX_RECORDS_IN_RAM=10000000    VERBOSITY=INFO QUIET=false COMPRESSION_LEVEL=5 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+  [Mon May 13 07:20:36 EDT 2024] Executing as na2318@cm002.hpc.nyu.edu on Linux 5.14.0-284.40.1.el9_2.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_271-b09; Deflater: Intel; Inflater: Intel; Picard version: 2.17.11-SNAPSHOT
+  INFO	2024-05-13 07:20:36	SortSam	Finished reading inputs, merging and writing to output now.
+  [Mon May 13 07:20:38 EDT 2024] picard.sam.SortSam done. Elapsed time: 0.04 minutes.
+  Runtime.totalMemory()=2058354688
+
+Work dir:
+  /scratch/na2318/ProjectB/Nextflow/work/48/ad40c1e058ccd66d8b7aa67de76386
+
+Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+May-13 07:20:43.467 [main] DEBUG nextflow.Session - Session await > all processes finished
+May-13 07:20:43.468 [Task monitor] DEBUG nextflow.Session - Session aborted -- Cause: Missing output file(s) `FinalOutput` expected by process `sam2bam`
+May-13 07:20:43.491 [main] DEBUG nextflow.Session - Session await > all barriers passed
+May-13 07:20:43.497 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=2; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=11m 15s; failedDuration=5m; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=15; peakMemory=48 GB; ]
+May-13 07:20:43.695 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+May-13 07:20:43.711 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
